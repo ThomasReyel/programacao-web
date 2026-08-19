@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
   <head>
+    <meta charset="utf-8" />
     <title>ReactZero</title>
   </head>
   <body>
@@ -9,15 +10,9 @@
     <script src="libs/react-dom.js"></script>
     <script src="libs/babel.js"></script>
     <script type="text/babel">
-      ReactDOM.render(<TabelaBeb/>,
-
-        document.getElementById("app"),
-      );
-    </script>
-    <script>
       function TabelaBeb() {
         return (
-          <div id="app">
+          <div>
             <table id="tabela" border="1">
               <thead>
                 <tr>
@@ -36,6 +31,20 @@
           </div>
         );
       }
+      function Cabecalho() {
+        return <h1>Minha tabela de bebidas</h1>;
+      }
     </script>
+    <script type="text/babel">
+      ReactDOM.render(
+         <div>
+        <Cabecalho />
+        <TabelaBeb />
+        </div>,
+
+        document.getElementById("app"),
+      );
+    </script>
+    <div id="app"></div>
   </body>
 </html>
