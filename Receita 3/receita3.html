@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link href="receita3.css" rel="stylesheet" />
   </head>
 
   <body>
@@ -15,15 +16,20 @@
   <script>
     function carregarDiv() {
       let div = document.getElementById("placeholder");
-      if (div.innerHTML.length == 0) {
-        div.innerHTML = `<h1 class="teste">Guinness</h1>`;
-      } else {
-        div.innerHTML = null;
-      }
+
+      div.classList.add("fading"); // começa o fade out
+
+      setTimeout(function () {
+        if (div.innerHTML.length == 0) {
+          div.innerHTML = `<h1>Guinness</h1>`;
+        } else {
+          div.innerHTML = null;
+        }
+        div.classList.remove("fading"); // fade in do novo conteúdo
+      }, 500); // mesmo tempo do transition no CSS
     }
 
     let botao = document.getElementById("botaoCarregar");
-
     botao.addEventListener("click", carregarDiv);
   </script>
 </html>
