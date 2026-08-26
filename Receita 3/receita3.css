@@ -1,0 +1,5 @@
+.teste{
+  opacity: 0; 
+  /* Runs the 'fade' keyframes over 4 seconds, loops infinitely */
+  animation: fade 4s linear infinite; 
+}

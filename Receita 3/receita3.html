@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <div id="meu amor">
+      <button id="botaoCarregar">Carregando cervejas...</button>
+    </div>
+    <div id="placeholder"></div>
+  </body>
+
+  <script>
+    function carregarDiv() {
+      let div = document.getElementById("placeholder");
+      if (div.innerHTML.length == 0) {
+        div.innerHTML = `<h1 class="teste">Guinness</h1>`;
+      } else {
+        div.innerHTML = null;
+      }
+    }
+
+    let botao = document.getElementById("botaoCarregar");
+
+    botao.addEventListener("click", carregarDiv);
+  </script>
+</html>
