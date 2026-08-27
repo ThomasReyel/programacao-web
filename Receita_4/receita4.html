@@ -21,7 +21,7 @@
     let cervejas = ["Guiness", "Desperados", "Becks"];
 
     function transformar(item) {
-      return `<div class='teste'>${item}</div>`;
+      return `<tr> <td class='teste'>${item}</td> </tr>`;
     }
 
     function carregarDiv() {
@@ -31,7 +31,7 @@
 
       let cervejasHtml = cervejas.map(transformar);
 
-      div.innerHTML = `${cervejasHtml.join("\n")}`;
+      div.innerHTML = `<table> <tr> <th>Bebidas</th> </tr> ${cervejasHtml} </table>`;
     }
 
     let botao = document.getElementById("botaoCarregar");
