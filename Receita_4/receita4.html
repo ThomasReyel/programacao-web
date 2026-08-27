@@ -16,7 +16,10 @@
       <button id="botaoCarregar">Carregando cervejas...</button>
     </div>
     <div>
-      <button id="ordenador"> Ordenar cervejas</button>
+      <button id="botaoOrdenar">Ordenar cervejas</button>
+    </div>
+        <div>
+      <button id="botaoDesordenar">Desordenar cervejas</button>
     </div>
   </body>
 
@@ -27,29 +30,25 @@
       return `<tr> <td class='linha'>${item}</td> </tr>`;
     }
 
-    function carregarDiv() {
+    function carregarDiv(paramentro) {
       let div = document.getElementById("meu amor");
 
       //let cervejasHtml = [`<h1>${cervejas[0]}</h1>`,`<h1>${cervejas[1]}</h1>`, `<h1>${cervejas[2]}</h1>`]
 
       let cervejasHtml = cervejas.map(transformar);
+      if (paramentro == "or") {
+        cervejasHtml = cervejasHtml.sort();
+      } else if (paramentro == "des") {
+        cervejasHtml = cervejasHtml.sort(() => Math.random() - 0.5);
+      }else{}
 
       div.innerHTML = `<table> <tr> <th>Bebidas</th> </tr> ${cervejasHtml} </table>`;
     }
-
-    function ordenarDiv() {
-      let div = document.getElementById("meu amor");
-
-      let cervejasHtml = cervejas.map(transformar);
-      cervejasHtml = cervejasHtml.sort()
-
-      div.innerHTML = `<table> <tr> <th>Bebidas</th> </tr> ${cervejasHtml} </table>`;
-    }
-
-    let botao = document.getElementById("botaoCarregar");
-    let botaoOrdenador = document.getElementById("ordenador");
-
-    botao.addEventListener("click", carregarDiv);
-    botaoOrdenador.addEventListener("click", ordenarDiv);
+    let botaoCarregar = document.getElementById("botaoCarregar")
+    let botaoOrdenador = document.getElementById("botaoOrdenar")
+    let botaoDesordenador = document.getElementById("botaoDesordenar")
+    botaoCarregar.addEventListener("click", () => {carregarDiv("")});
+    botaoOrdenador.addEventListener("click", () => {carregarDiv("or")});
+    botaoDesordenador.addEventListener("click", () => {carregarDiv("des")});
   </script>
 </html>
