@@ -4,6 +4,12 @@
   <head>
     <meta charset="UTF-8" />
   </head>
+  <style>
+    .teste {
+      border: 3px solid #ddd;
+      padding: 8px;
+    }
+  </style>
 
   <body>
     <div id="meu amor">
@@ -15,7 +21,7 @@
     let cervejas = ["Guiness", "Desperados", "Becks"];
 
     function transformar(item) {
-      return `<div>${item}</div>`;
+      return `<div class='teste'>${item}</div>`;
     }
 
     function carregarDiv() {
