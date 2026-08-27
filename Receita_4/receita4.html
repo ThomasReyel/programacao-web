@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
   </head>
   <style>
-    .teste {
+    .linha {
       border: 3px solid #ddd;
       padding: 8px;
     }
@@ -15,13 +15,16 @@
     <div id="meu amor">
       <button id="botaoCarregar">Carregando cervejas...</button>
     </div>
+    <div>
+      <button id="ordenador"> Ordenar cervejas</button>
+    </div>
   </body>
 
   <script>
     let cervejas = ["Guiness", "Desperados", "Becks"];
 
     function transformar(item) {
-      return `<tr> <td class='teste'>${item}</td> </tr>`;
+      return `<tr> <td class='linha'>${item}</td> </tr>`;
     }
 
     function carregarDiv() {
@@ -34,8 +37,19 @@
       div.innerHTML = `<table> <tr> <th>Bebidas</th> </tr> ${cervejasHtml} </table>`;
     }
 
+    function ordenarDiv() {
+      let div = document.getElementById("meu amor");
+
+      let cervejasHtml = cervejas.map(transformar);
+      cervejasHtml = cervejasHtml.sort()
+
+      div.innerHTML = `<table> <tr> <th>Bebidas</th> </tr> ${cervejasHtml} </table>`;
+    }
+
     let botao = document.getElementById("botaoCarregar");
+    let botaoOrdenador = document.getElementById("ordenador");
 
     botao.addEventListener("click", carregarDiv);
+    botaoOrdenador.addEventListener("click", ordenarDiv);
   </script>
 </html>
