@@ -8,17 +8,14 @@
   <body>
     <div id="app"></div>
 
-    <script src="libs/react.js" />
+    <script src="libs/react.js"></script>
 
-    <script src="libs/react-dom.js" />
+    <script src="libs/react-dom.js"></script>
 
-    <script src="libs/babel.js" />
+    <script src="libs/babel.js"></script>
 
     <script type="text/babel">
-      const TabelaBebidas = ({
-        titulo,
-        cabecalhos: [cabecalho1, cabecalho2],
-      }) => {
+      const TabelaBebidas = ({ titulo, cabecalhos= [] }) => {
         return (
           <div>
             <h1>{titulo}</h1>
@@ -26,8 +23,7 @@
             <table id="tabela" border="1">
               <thead>
                 <tr>
-                  <th>{cabecalho1}</th>
-                  <th>{cabecalho2}</th>
+                  {cabecalhos.map(linhas)}
                 </tr>
               </thead>
 
@@ -43,6 +39,10 @@
       };
 
       const valoresCabecalhos = ["Nome", "Marca"];
+
+      function linhas(item) {
+        return <th>{item}</th>
+      }
 
       ReactDOM.render(
         <TabelaBebidas
