@@ -15,23 +15,22 @@
     <script src="libs/babel.js"></script>
 
     <script type="text/babel">
-      const TabelaBebidas = ({ titulo, cabecalhos= [] }) => {
+      const TabelaBebidas = ({
+        titulo,
+        bebidas = [],
+        marcas = [],
+        cabecalhos = [],
+      }) => {
         return (
           <div>
             <h1>{titulo}</h1>
 
             <table id="tabela" border="1">
               <thead>
-                <tr>
-                  {cabecalhos.map(linhas)}
-                </tr>
+                <tr>{cabecalhos.map(cabecalho)}</tr>
               </thead>
-
               <tbody>
-                <tr>
-                  <td>Havana</td>
-                  <td>Engenho Anísio Santiago</td>
-                </tr>
+                {bebidas.map((bebida,index) => linhas(bebida,marcas[index]))}
               </tbody>
             </table>
           </div>
@@ -39,14 +38,31 @@
       };
 
       const valoresCabecalhos = ["Nome", "Marca"];
+      const bebidasLinhas = ["Uísques", "Cervejas", "Vodkas", "Cachaças"];
+      const marcasLinhas = [
+        "Jack Daniel's",
+        "Budweiser",
+        "Smirnoff",
+        "Samanaú",
+      ];
 
-      function linhas(item) {
-        return <th>{item}</th>
+      function cabecalho(item) {
+        return <th>{item}</th>;
+      }
+      function linhas(item1,item2) {
+        return (
+          <tr>
+            <td>{item1}</td>
+            <td>{item2}</td>
+          </tr>
+        );
       }
 
       ReactDOM.render(
         <TabelaBebidas
           titulo="minha tabela de cana"
+          bebidas={bebidasLinhas}
+          marcas={marcasLinhas}
           cabecalhos={valoresCabecalhos}
         />,
 
