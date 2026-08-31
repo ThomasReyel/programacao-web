@@ -15,16 +15,19 @@
     <script src="libs/babel.js" />
 
     <script type="text/babel">
-      const TabelaBebidas = () => {
+      const TabelaBebidas = ({
+        titulo,
+        cabecalhos: [cabecalho1, cabecalho2],
+      }) => {
         return (
           <div>
-            <h1>Tabela de Bebidas</h1>
+            <h1>{titulo}</h1>
 
             <table id="tabela" border="1">
               <thead>
                 <tr>
-                  <th>Nome</th>
-                  <th>Marca</th>
+                  <th>{cabecalho1}</th>
+                  <th>{cabecalho2}</th>
                 </tr>
               </thead>
 
@@ -39,8 +42,13 @@
         );
       };
 
+      const valoresCabecalhos = ["Nome", "Marca"];
+
       ReactDOM.render(
-        <TabelaBebidas />,
+        <TabelaBebidas
+          titulo="minha tabela de cana"
+          cabecalhos={valoresCabecalhos}
+        />,
 
         document.getElementById("app"),
       );
