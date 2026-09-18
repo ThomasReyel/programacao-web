@@ -36,8 +36,8 @@
 
     //cs é um array de cervejas
 
-    const carregarDiv = (cs) => {
-      const div = document.getElementById("cervejasDiv");
+    const carregarDiv = (cs, id = "cervejasDiv") => {
+      const div = document.getElementById(id);
 
       const itensHtml = cs.map(
         (item) => `<tbody><tr>
