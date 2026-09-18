@@ -15,22 +15,22 @@
   <script>
     let cervejas = [
       {
-        name: "Guiness",
-        alcohol: "10%",
-        ibu: "35",
-        style: "Imperial Stout",
+        Nome: "Guiness",
+        Álcool: "10%",
+        Amargor: "35",
+        Estilo: "Imperial Stout",
       },
       {
-        name: "Desperados",
-        alcohol: "6%",
-        ibu: "18",
-        style: "Cream Ale",
+        Nome: "Desperados",
+        Álcool: "6%",
+        Amargor: "18",
+        Estilo: "Cream Ale",
       },
       {
-        name: "Becks",
-        alcohol: "5%",
-        ibu: "22",
-        style: "Pilsen",
+        Nome: "Becks",
+        Álcool: "5%",
+        Amargor: "22",
+        Estilo: "Pilsen",
       },
     ];
 
@@ -38,17 +38,17 @@
 
     const carregarDiv = (cs, id = "cervejasDiv") => {
       const div = document.getElementById(id);
-
+      const cabecalho = Object.keys(cs[0]).map((chave) => `<th>${chave}</th>`).join("");
       const itensHtml = cs.map(
         (item) => `<tbody><tr>
-          <td>${item["name"]}</td>
-          <td>${item["alcohol"]}</td>
-          <td>${item["style"]}</td>
-          <td>${item["ibu"]}</td>
+          <td>${item["Nome"]}</td>
+          <td>${item["Álcool"]}</td>
+          <td>${item["Estilo"]}</td>
+          <td>${item["Amargor"]}</td>
         </tr>
       </tbody>`,
       );
-      div.innerHTML = `<table><thead><tr><th>Nome</th><th>Álcool</th><th>Estilo</th><th>IBU</th></tr></thead>${itensHtml}</table>`;
+      div.innerHTML = `<table><thead><tr>${cabecalho}</tr></thead>${itensHtml}</table>`;
     };
 
     let botao = document.getElementById("botaoCarregar");
