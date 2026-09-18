@@ -15,37 +15,38 @@
   <script>
     let cervejas = [
       {
-        Nome: "Guiness",
-        Álcool: "10%",
-        Amargor: "35",
-        Estilo: "Imperial Stout",
+        name: "Guiness",
+        alcohol: "10%",
+        ibu: "35",
+        style: "Imperial Stout",
       },
       {
-        Nome: "Desperados",
-        Álcool: "6%",
-        Amargor: "18",
-        Estilo: "Cream Ale",
+        name: "Desperados",
+        alcohol: "6%",
+        ibu: "18",
+        style: "Cream Ale",
       },
       {
-        Nome: "Becks",
-        Álcool: "5%",
-        Amargor: "22",
-        Estilo: "Pilsen",
+        name: "Becks",
+        alcohol: "5%",
+        ibu: "22",
+        style: "Pilsen",
       },
     ];
 
     //cs é um array de cervejas
 
-    const carregarDiv = (cs, id = "cervejasDiv") => {
+    const carregarDiv = (
+      cs,
+      id = "cervejasDiv",
+      propriedades = ["name", "alcohol", "style", "ibu"],
+    ) => {
       const div = document.getElementById(id);
-      const cabecalho = Object.keys(cs[0]).map((chave) => `<th>${chave}</th>`).join("");
+      const cabecalho = propriedades
+        .map((chave) => `<th>${chave}</th>`);
       const itensHtml = cs.map(
-        (item) => `<tbody><tr>
-          <td>${item["Nome"]}</td>
-          <td>${item["Álcool"]}</td>
-          <td>${item["Estilo"]}</td>
-          <td>${item["Amargor"]}</td>
-        </tr>
+        (item) => `<tbody>
+        <tr>  ${propriedades.map((p) => `<td>${item[p]}</td>`)}</tr>
       </tbody>`,
       );
       div.innerHTML = `<table><thead><tr>${cabecalho}</tr></thead>${itensHtml}</table>`;
