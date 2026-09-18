@@ -3,6 +3,8 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <script src="receita_7.js"></script>
+    <link href="receita_7.css" rel="stylesheet" />
     
   </head>
 
@@ -13,31 +15,15 @@
   </body>
 
   <script>
-    let cervejas = [];
-
-    //cs é um array de cervejas
-
-    const carregarDiv = (cs) => {
-      const div = document.getElementById("cervejasDiv");
-
-      const itensHtml = cs.map(
-        ({ name, email }) => `<tbody><tr>
-          <td>${name}</td>
-          <td>${email}</td>
-        </tr>
-      </tbody>`
-      );
-      div.innerHTML = `<table><thead><tr><th>Nome</th><th>Email</th></tr></thead>${itensHtml}</table>`;
-    };
-
     async function carregarCervejas() {
       try {
         let res = await fetch("https://jsonplaceholder.typicode.com/users");
 
         cervejas = await res.json();
 
-        carregarDiv(cervejas);
+        CarregarTabela(cervejas,"cervejasDiv",Object.keys(cervejas[0]));
       } catch (err) {
+        console.error(err);
         document.getElementById("cervejasDiv").innerHTML = "Fudeu...";
       }
     }
