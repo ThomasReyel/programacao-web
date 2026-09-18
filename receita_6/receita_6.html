@@ -12,25 +12,7 @@
   </body>
 
   <script>
-    let cervejas = [
-      {
-        name: "Guiness",
-
-        alcohol: "10%",
-      },
-
-      {
-        name: "Desperados",
-
-        alcohol: "6%",
-      },
-
-      {
-        name: "Becks",
-
-        alcohol: "5%",
-      },
-    ];
+    let cervejas = [];
 
     //cs é um array de cervejas
 
@@ -38,14 +20,29 @@
       const div = document.getElementById("cervejasDiv");
 
       const itensHtml = cs.map(
-        (item) => `<div>${item["name"]} -- ${item["alcohol"]}</div>`,
+        ({ name, email }) => `<tbody><tr>
+          <td>${name}</td>
+          <td>${email}</td>
+        </tr>
+      </tbody>`,
       );
-
-      div.innerHTML = `${itensHtml.join("\n")}`;
+      div.innerHTML = `<table><thead><tr><th>Nome</th><th>Email</th></tr></thead>${itensHtml}</table>`;
     };
+
+    async function carregarCervejas() {
+      try {
+        let res = await fetch("https://jsonplaceholder.typicode.com/users");
+
+        cervejas = await res.json();
+
+        carregarDiv(cervejas);
+      } catch (err) {
+        document.getElementById("cervejasDiv").innerHTML = "Fudeu...";
+      }
+    }
 
     let botao = document.getElementById("botaoCarregar");
 
-    botao.addEventListener("click", () => carregarDiv(cervejas));
+    botao.addEventListener("click", () => carregarCervejas());
   </script>
 </html>
