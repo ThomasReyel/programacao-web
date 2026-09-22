@@ -45,7 +45,7 @@
     function carregarCervejas2() {
       fetch("https://jsonplaceholder.typicode.com/users")
         .then((res) => res.json())
-        .then((json) => CarregarTabela(json,"cervejasDiv",Object.keys(json[0])))
+        .then((json) => carregarTabela(json,"cervejasDiv",Object.keys(json[0])))
         .catch(
           (err) =>
             (document.getElementById("cervejasDiv").innerHTML =

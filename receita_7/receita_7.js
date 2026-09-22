@@ -1,4 +1,4 @@
-function CarregarTabela(
+function carregarTabela(
     cs,
     id,
     propriedades,

@@ -21,7 +21,7 @@
 
         cervejas = await res.json();
 
-        CarregarTabela(cervejas,"cervejasDiv",Object.keys(cervejas[0]));
+        carregarTabela(cervejas,"cervejasDiv",Object.keys(cervejas[0]));
       } catch (err) {
         console.error(err);
         document.getElementById("cervejasDiv").innerHTML = "Fudeu...";
