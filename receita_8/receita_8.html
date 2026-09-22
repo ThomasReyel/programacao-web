@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="receita_8.js"></script>
+    <link href="receita_8.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div><button id="botaoCarregar">Carregando cervejas...</button></div>
+
+    <div id="cervejasDiv"></div>
+  </body>
+
+  <script>
+    let cervejas = [];
+
+    //cs é um array de cervejas
+
+    const carregarDiv = (cs) => {
+      const div = document.getElementById("cervejasDiv");
+
+      const itensHtml = cs.map(
+        ({ name, alcohol }) => `<div>${name} -- ${alcohol}</div>`,
+      );
+
+      div.innerHTML = `${itensHtml.join("\n")}`;
+    };
+
+    async function carregarCervejas() {
+      try {
+        let res = await fetch(
+          "https://jsonplaceholder.typicode.com/users",
+        );
+
+        cervejas = await res.json();
+
+        carregarDiv(cervejas);
+      } catch (err) {
+        document.getElementById("cervejasDiv").innerHTML = "Fudeu...";
+      }
+    }
+
+    function carregarCervejas2() {
+      fetch("https://jsonplaceholder.typicode.com/users")
+        .then((res) => res.json())
+        .then((json) => CarregarTabela(json,"cervejasDiv",Object.keys(json[0])))
+        .catch(
+          (err) =>
+            (document.getElementById("cervejasDiv").innerHTML =
+              `Fudeu... ${err}`),
+        );
+
+      document.getElementById("cervejasDiv").innerHTML = `Fazendo requisição`;
+    }
+
+    let botao = document.getElementById("botaoCarregar");
+
+    botao.addEventListener("click", () => carregarCervejas2());
+  </script>
+</html>
