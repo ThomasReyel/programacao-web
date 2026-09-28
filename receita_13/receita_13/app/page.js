@@ -10,3 +10,13 @@ export default function Home(){
         </div>
     )
 }
+
+export function OlaMundo(){
+    return (
+        <div>
+                <h1>
+                    Olá mundo (mais genérico impossível kkkk)
+                </h1>
+            </div>
+    )
+}
