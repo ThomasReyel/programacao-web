@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+#menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100vw;
+  background-color: blue;
+  color: aliceblue;
+}
+
+#menuBot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
