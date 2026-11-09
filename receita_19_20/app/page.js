@@ -3,9 +3,11 @@ export default function Home(){
 
     return (
         <div>
-            <Link href='/clientMovies1'>Receita 18</Link>
+            <Link href='/clientMovies1'>Buscar Filmes da receita 19</Link>
             <br></br>
-            <Link href='/searchMovie'>Coisas da receita 17</Link>
+            <Link href='/api/searchMovie'>Acessar api</Link>
+            <br></br>
+            <Link href='/clientServerMovies'>Busca de filmes da receita 20</Link>
         </div>
 
 
