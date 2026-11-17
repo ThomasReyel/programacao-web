@@ -1,21 +1,26 @@
 "use client"
 
 import Form from "next/form"
-import {useState} from "react" 
+import { useState } from "react"
+import { useFormStatus } from "react-dom"
 
 export default function Home() {
     const [resultMovies, setResultMovies] = useState([])
+    const [inputText, setInputText] = useState("")
 
     async function handleAction(formData) {
         const titleSearchKey = formData.get("titleSearchKey")
-        const httpRes = await fetch(`http://www.omdbapi.com/?apikey=49b43365&s=${titleSearchKey}`)
+        setInputText(titleSearchKey)
+        const httpRes = await fetch(
+            `http://www.omdbapi.com/?apikey=49b43365&s=${titleSearchKey}}`
+        )
         const jsonRes = await httpRes.json()
-        setResultMovies(jsonRes.Search || [])   
+        setResultMovies(jsonRes.Search || [])
 
     }
     return (
         <div>
-            <MovieForm handleAction={handleAction}/>
+            <MovieForm handleAction={handleAction} inputText={inputText} setInputText={setInputText} />
             <MovieTable movies={resultMovies} />
         </div>
 
@@ -23,7 +28,7 @@ export default function Home() {
     )
 }
 
-export function MovieForm({handleAction}) {
+export function MovieForm({ handleAction, inputText, setInputText }) {
 
     return (
         <Form action={handleAction} className="flex flex-col gap-2 max-w-sm p-4 bg-white rounded-lg shadow-sm border border-slate-100">
@@ -38,16 +43,13 @@ export function MovieForm({handleAction}) {
                 id="idTitleSearchKey"
                 name="titleSearchKey"
                 type="text"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
                 placeholder="Digite o título..."
                 className="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
 
-            <button
-                type="submit"
-                className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md text-sm transition-colors duration-200"
-            >
-                Pesquisar
-            </button>
+            <SubmitButton />
         </Form>
 
     )
@@ -62,4 +64,17 @@ export function MovieTable({ movies }) {
         </div>
     )
 
+}
+function SubmitButton() {
+    const { pending } = useFormStatus()
+
+    return (
+        <button
+            type="submit"
+            disabled={pending}
+            className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md text-sm transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+            {pending ? "Pesquisando..." : "Pesquisar"}
+        </button>
+    )
 }
